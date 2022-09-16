@@ -16,14 +16,15 @@
                           <div class="icon d-flex align-items-center justify-content-center">
                               <span class="fa fa-user-o"></span>
                           </div>
-                          <h3 class="text-center mb-4 text-white" >Login</h3>
+                          <h3 class="loginTitle text-center mb-4 "  >Login</h3>
                             <!-- <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" class="login-form form--hidden" id="login"> -->
-                                <form [formGroup]="login" (ngSubmit)="saveData()" class="login-form form--hidden" id="login">
+                                <form [formGroup]="login" (ngSubmit)="savelogin()" class="login-form form--hidden" id="login">
 
                                 <div class="form-group">
-                                <!-- <div  class="form__message form__message--error text-white" >Incorrect username or password</div> -->
                                 <div class="form__input-group">
-                                  <input type="text" class="form-control rounded-left form__input"  autofocus  placeholder="Username" formControlName="Username" required>
+                                  <input type="text" class="form-control rounded-left form__input"  autofocus  placeholder="Username" formControlName="username" required>
+                            <!-- <div  class="form__message form__message--error text-white" >Incorrect username or password</div> -->
+                                    <span class="text-danger " *ngIf="login.controls['username'].dirty && login.hasError('required','username')">Username is required</span>
                                   <!-- <div class="form__input-error-message text-white" >This is an error message</div> -->
                              <br>
                                 </div>
@@ -31,21 +32,21 @@
                         
                           <div class="form__input-group">
                                 
-                          <input type="password" class="form-control rounded-left"  placeholder="Password" formControlName="Password" required>
-                          <div class="form__input-error-message text-white" ></div>
+                          <input type="password" class="form-control rounded-left"  placeholder="Password" formControlName="password" required>
+                          <span class="text-danger " *ngIf="login.controls['password'].dirty && login.hasError('required','password')">password is required</span>
 
                         </div>
-                        <p class="form__text">
+                        <!-- <p class="form__text">
                             <a href="#" class="form__link"> Forget your Password</a>
-                        </p>
+                        </p> -->
                         <p class="form__text">
-                         <p class="text-white"> Dont have any account?  <a class="form__link" href="signUp.html" id="linksCreateAccounts">  create an account</a>
+                         <p class="text-white"> Don't have any account?  <a class="form__link  " style="color:rgb(0, 102, 153) !important ; font-weight: 800 !important;" routerLink="/signup" id="linksCreateAccounts">  create an account</a>
                         </p>
                        
                         <div class="form-group">
-                            <button class="form-control btn btn-primary rounded submit px-3"type="submit">Login</button>
+                            <button class="form-control btn btn-primary rounded submit px-3"type="submit" [disabled]="!login.valid" routerLink="/home">Login</button>
                         </div>
-                        <div class="form-group d-md-flex">
+                        <!-- <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary" style="color:aliceblue">Remember Me
                                               <input type="checkbox" checked>
@@ -55,7 +56,7 @@
                                         <div class="w-50 text-md-right">
                                             <a href="#">Forgot Password</a>
                                         </div>
-                        </div>
+                        </div> -->
                       </form>
                     </div>
                         </div>
